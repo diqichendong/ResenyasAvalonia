@@ -1,0 +1,133 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="600"
+        x:Class="ResenyasAvalonia.MainWindow"
+        Title="Reseñas" Width="600" Height="600"
+        Background="Beige"
+        Closing="Window_OnClosing">
+    <Canvas>
+        
+        <!-- Panel Principal -->
+        <StackPanel Name="PanelPrincipal" Width="580" Height="580"
+                    Canvas.Left="10" Canvas.Top="10">
+            
+            <!-- Total de reseñas -->
+            <TextBlock Name="lblTotal" FontSize="16" Margin="0 5">
+                Número total de reseñas: 1
+            </TextBlock>
+            
+            <!-- Grid poster y datos -->
+            <Grid ColumnDefinitions="200, *">
+                <!-- Poster -->
+                <StackPanel>
+                    <Image Width="120" Height="170" Source="default.png" Stretch="UniformToFill"
+                           Margin="5" Name="imgPoster"></Image>
+                    <Button Background="Coral" HorizontalAlignment="Center" Margin="5" Name="btnSubirImagen"
+                            Click="BtnSubirImagen_OnClick">
+                        Subir imagen
+                    </Button>
+                </StackPanel>
+                
+                <!-- Datos -->
+                <Grid ColumnDefinitions="100, *" RowDefinitions="*, *, *, *, *" Grid.Column="1">
+                    <!-- Labels -->
+                    <TextBlock Grid.Row="0" TextAlignment="End" VerticalAlignment="Center" 
+                               FontWeight="Bold" FontSize="16" Margin="10 0">
+                        Tipo:
+                    </TextBlock>
+                    <TextBlock Grid.Row="1" TextAlignment="End" VerticalAlignment="Center" 
+                               FontWeight="Bold" FontSize="16" Margin="10 0">
+                        Título:
+                    </TextBlock>
+                    <TextBlock Grid.Row="2" TextAlignment="End" VerticalAlignment="Center" 
+                               FontWeight="Bold" FontSize="16" Margin="10 0">
+                        Año:
+                    </TextBlock>
+                    <TextBlock Grid.Row="3" TextAlignment="End" VerticalAlignment="Center" 
+                               FontWeight="Bold" FontSize="16" Margin="10 0">
+                        Género(s):
+                    </TextBlock>
+                    <TextBlock Grid.Row="4" TextAlignment="End" VerticalAlignment="Center" 
+                               FontWeight="Bold" FontSize="16" Margin="10 0">
+                        Nota:
+                    </TextBlock>
+                    
+                    <!-- Fields -->
+                    <ComboBox Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" Width="130"
+                              SelectedIndex="0" MaxDropDownHeight="100" Margin="5"
+                              Name="cbTipo">
+                        <ComboBoxItem>Película</ComboBoxItem>
+                        <ComboBoxItem>Serie</ComboBoxItem>
+                        <ComboBoxItem>Documental</ComboBoxItem>
+                    </ComboBox>
+                    <TextBox Grid.Column="1" Grid.Row="1" Margin="5" Name="txtTitulo"></TextBox>
+                    <TextBox Grid.Column="1" Grid.Row="2" Margin="5" Name="txtAnyo"></TextBox>
+                    <TextBox Grid.Column="1" Grid.Row="3" Margin="5" Name="txtGenero"></TextBox>
+                    <NumericUpDown Grid.Column="1" Grid.Row="4" Margin="5" Width="120" HorizontalAlignment="Left"
+                                   Value="5" Maximum="10" Minimum="0" Increment="0.5" FormatString="0.#"
+                                   Name="numNota"/>
+                </Grid>
+            </Grid>
+            
+            <!-- Panel reseña y recomendar -->
+            <StackPanel Margin="25 5">
+                <!-- Reseña -->
+                <TextBlock FontSize="16" FontWeight="Bold">Reseña:</TextBlock>
+                <TextBox Height="150" TextWrapping="Wrap" AcceptsReturn="True" Name="txtContenido"></TextBox>
+                
+                <!-- Recomendar -->
+                <CheckBox Margin="5 0" Name="chkRecomendado">¿La recomiendas?</CheckBox>
+            </StackPanel>
+            
+            <!-- Panel botones -->
+            <Grid ColumnDefinitions="*, *, *, *" RowDefinitions="*, *" Margin="0 5">
+                <Button Grid.Column="0" Grid.Row="0" Background="Coral" HorizontalAlignment="Center" 
+                        Width="100" HorizontalContentAlignment="Center" Margin="5" Name="btnAnterior"
+                        Click="BtnAnterior_OnClick">
+                    Anterior
+                </Button>
+                <Button Grid.Column="1" Grid.Row="0" Background="Coral" HorizontalAlignment="Center"
+                        Width="100" HorizontalContentAlignment="Center" Name="btnCrear"
+                        Click="BtnCrear_OnClick">
+                    Crear
+                </Button>
+                <Button Grid.Column="2" Grid.Row="0" Background="Coral" HorizontalAlignment="Center"
+                        Width="100" HorizontalContentAlignment="Center" Name="btnBorrar"
+                        Click="BtnBorrar_OnClick">
+                    Borrar
+                </Button>
+                <Button Grid.Column="3" Grid.Row="0" Background="Coral" HorizontalAlignment="Center"
+                        Width="100" HorizontalContentAlignment="Center" Name="btnSiguiente"
+                        Click="BtnSiguiente_OnClick">
+                    Siguiente
+                </Button>
+                <Button Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Background="Coral" HorizontalAlignment="Center"
+                        Width="100" HorizontalContentAlignment="Center" Margin="5" Name="btnGuardar"
+                        Click="BtnGuardar_OnClick">
+                    Guardar
+                </Button>
+            </Grid>
+            
+        </StackPanel>
+        
+        <!-- Panel mensaje -->
+        <Border Canvas.Left="150" Canvas.Top="220" CornerRadius="5"
+                BorderBrush="Gray" Background="Bisque" BorderThickness="2" 
+                Name="PanelMensaje" Width="300" Height="150"
+                IsVisible="False">
+            <Grid ColumnDefinitions="*" RowDefinitions="*, 45">
+                <TextBlock Grid.Row="0" Name="MensajeBox" TextWrapping="Wrap"
+                           FontSize="16" Margin="5 " TextAlignment="Center" VerticalAlignment="Center">
+                    ¡Hola mundo!
+                </TextBlock>
+                <Button Grid.Row="1" Name="BtnAceptarMensaje" HorizontalAlignment="Center"
+                        Background="Coral" Click="BtnAceptarMensaje_OnClick">
+                    Aceptar
+                </Button>
+            </Grid>
+        </Border>
+        
+    </Canvas>
+</Window>
